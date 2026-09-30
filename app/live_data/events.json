@@ -1,0 +1,61 @@
+[
+    {
+        "event_id": "EVT-001",
+        "event_type": "login_success",
+        "user": "alice.smith",
+        "device": "LAPTOP-02",
+        "country": "India",
+        "mfa": true,
+        "timestamp": "2026-09-29T10:00:00Z"
+    },
+
+    {
+        "event_id": "EVT-002",
+        "event_type": "process_execution",
+        "user": "alice.smith",
+        "device": "LAPTOP-02",
+        "process": "chrome.exe",
+        "status": "normal",
+        "timestamp": "2026-09-29T10:01:00Z"
+    },
+
+    {
+        "event_id": "EVT-003",
+        "event_type": "login_failed",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "failed_attempts": 15,
+        "country": "Russia",
+        "timestamp": "2026-09-29T10:02:00Z"
+    },
+
+    {
+        "event_id": "EVT-004",
+        "event_type": "process_execution",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "process": "powershell.exe",
+        "status": "suspicious",
+        "timestamp": "2026-09-29T10:03:00Z"
+    },
+
+    {
+        "event_id": "EVT-005",
+        "event_type": "network_connection",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "destination_ip": "185.22.11.90",
+        "reputation": "malicious",
+        "timestamp": "2026-09-29T10:04:00Z"
+    },
+
+    {
+        "event_id": "EVT-006",
+        "event_type": "process_execution",
+        "user": "bob.jones",
+        "device": "SERVER-01",
+        "process": "notepad.exe",
+        "status": "normal",
+        "timestamp": "2026-09-29T10:05:00Z"
+    }
+]

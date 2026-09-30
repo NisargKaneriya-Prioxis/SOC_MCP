@@ -1,0 +1,82 @@
+{
+    "INC-1001": {
+        "incident_id": "INC-1001",
+        "source": "Microsoft Sentinel",
+        "severity": "HIGH",
+        "alert": "Suspicious PowerShell Execution",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-29T10:30:00Z",
+        "status": "NEW"
+    },
+    "INC-1002": {
+        "incident_id": "INC-1002",
+        "source": "Microsoft Sentinel",
+        "severity": "MEDIUM",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "alice.smith",
+        "device": "LAPTOP-02",
+        "timestamp": "2026-09-29T11:30:00Z",
+        "status": "NEW"
+    },
+    "INC-1003": {
+        "incident_id": "INC-1003",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-29T12:56:41.032234+00:00",
+        "status": "NEW"
+    },
+    "INC-1004": {
+        "incident_id": "INC-1004",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T04:59:41.929614+00:00",
+        "status": "INVESTIGATING"
+    },
+    "INC-1005": {
+        "incident_id": "INC-1005",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T05:03:57.105188+00:00",
+        "status": "INVESTIGATING"
+    },
+    "INC-1006": {
+        "incident_id": "INC-1006",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T05:05:49.700864+00:00",
+        "status": "INVESTIGATING"
+    },
+    "INC-1007": {
+        "incident_id": "INC-1007",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T05:24:09.657965+00:00",
+        "status": "TICKET_CREATION_FAILED"
+    },
+    "INC-1008": {
+        "incident_id": "INC-1008",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T05:40:38.658745+00:00",
+        "status": "TICKET_CREATED"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "LAPTOP-01": {
+        "device": "LAPTOP-01",
+        "source_ip": "10.0.0.25",
+        "destination_ip": "185.22.11.90",
+        "destination_port": 443,
+        "protocol": "HTTPS",
+        "reputation": "malicious",
+        "action": "allowed",
+        "timestamp": "2026-09-29T10:29:00Z"
+    },
+
+    "LAPTOP-02": {
+        "device": "LAPTOP-02",
+        "source_ip": "10.0.0.26",
+        "destination_ip": "8.8.8.8",
+        "destination_port": 443,
+        "protocol": "HTTPS",
+        "reputation": "clean",
+        "action": "allowed",
+        "timestamp": "2026-09-29T11:22:00Z"
+    }
+}

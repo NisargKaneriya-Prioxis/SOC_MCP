@@ -1,0 +1,15 @@
+{
+    "ticket_id": "SOC-1002",
+    "incident_id": "INC-1008",
+    "severity": "HIGH",
+    "summary": "Multiple Failed Login Attempts. Affected user: john.doe. Affected device: LAPTOP-01. Final risk level: HIGH.",
+    "recommendations": [
+        "Enable MFA for the affected account.",
+        "Review the affected account and reset credentials if compromise is confirmed.",
+        "Investigate and consider isolating the affected endpoint.",
+        "Perform malware analysis on the affected endpoint.",
+        "Review and block the malicious network destination as appropriate."
+    ],
+    "status": "OPEN",
+    "created_at": "2026-09-30T05:41:07.478063+00:00"
+}

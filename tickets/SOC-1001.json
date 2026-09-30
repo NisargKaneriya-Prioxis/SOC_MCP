@@ -1,0 +1,16 @@
+{
+    "ticket_id": "SOC-1001",
+    "incident_id": "INC-1001",
+    "severity": "HIGH",
+    "summary": "Suspicious PowerShell Execution affecting user john.doe and device LAPTOP-01. Investigation risk level: HIGH.",
+    "recommendations": [
+        "Review the suspicious user authentication.",
+        "Enable MFA for the affected account.",
+        "Reset credentials and review failed authentication attempts.",
+        "Isolate the affected endpoint for further investigation.",
+        "Perform malware analysis on the affected endpoint.",
+        "Block the malicious destination at the network security layer."
+    ],
+    "status": "OPEN",
+    "created_at": "2026-09-29T11:57:16.795114+00:00"
+}

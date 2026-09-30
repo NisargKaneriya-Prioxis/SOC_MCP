@@ -1,0 +1,49 @@
+{
+    "INC-1001": [
+        {
+            "timestamp": "2026-09-29T10:20:00Z",
+            "event": "Authentication failure",
+            "user": "john.doe",
+            "device": "LAPTOP-01"
+        },
+        {
+            "timestamp": "2026-09-29T10:21:00Z",
+            "event": "Multiple authentication failures detected",
+            "user": "john.doe",
+            "device": "LAPTOP-01"
+        },
+        {
+            "timestamp": "2026-09-29T10:25:00Z",
+            "event": "Successful authentication from unusual location",
+            "user": "john.doe",
+            "device": "LAPTOP-01"
+        },
+        {
+            "timestamp": "2026-09-29T10:28:00Z",
+            "event": "Suspicious PowerShell execution detected",
+            "user": "john.doe",
+            "device": "LAPTOP-01"
+        },
+        {
+            "timestamp": "2026-09-29T10:29:00Z",
+            "event": "Connection to malicious destination detected",
+            "user": "john.doe",
+            "device": "LAPTOP-01"
+        }
+    ],
+
+    "INC-1002": [
+        {
+            "timestamp": "2026-09-29T11:20:00Z",
+            "event": "Failed authentication attempt",
+            "user": "alice.smith",
+            "device": "LAPTOP-02"
+        },
+        {
+            "timestamp": "2026-09-29T11:25:00Z",
+            "event": "Successful authentication",
+            "user": "alice.smith",
+            "device": "LAPTOP-02"
+        }
+    ]
+}

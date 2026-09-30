@@ -1,0 +1,23 @@
+{
+    "LAPTOP-01": {
+        "device": "LAPTOP-01",
+        "hostname": "LAPTOP-01",
+        "process": "powershell.exe",
+        "parent_process": "winword.exe",
+        "command": "Suspicious encoded PowerShell command detected",
+        "status": "suspicious",
+        "malware_detected": true,
+        "timestamp": "2026-09-29T10:28:00Z"
+    },
+
+    "LAPTOP-02": {
+        "device": "LAPTOP-02",
+        "hostname": "LAPTOP-02",
+        "process": "chrome.exe",
+        "parent_process": "explorer.exe",
+        "command": "Normal browser execution",
+        "status": "normal",
+        "malware_detected": false,
+        "timestamp": "2026-09-29T11:20:00Z"
+    }
+}

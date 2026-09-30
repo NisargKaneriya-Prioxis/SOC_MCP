@@ -1,0 +1,23 @@
+{
+    "john.doe": {
+        "user": "john.doe",
+        "failed_logins": 15,
+        "successful_login": true,
+        "country": "Russia",
+        "usual_country": "India",
+        "mfa": false,
+        "source_ip": "91.200.12.15",
+        "timestamp": "2026-09-29T10:25:00Z"
+    },
+
+    "alice.smith": {
+        "user": "alice.smith",
+        "failed_logins": 5,
+        "successful_login": true,
+        "country": "India",
+        "usual_country": "India",
+        "mfa": true,
+        "source_ip": "10.10.20.15",
+        "timestamp": "2026-09-29T11:25:00Z"
+    }
+}
