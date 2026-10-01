@@ -78,5 +78,75 @@
         "device": "LAPTOP-01",
         "timestamp": "2026-09-30T05:40:38.658745+00:00",
         "status": "TICKET_CREATED"
+    },
+    "INC-1009": {
+        "incident_id": "INC-1009",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T06:11:09.553197+00:00",
+        "status": "TICKET_CREATED"
+    },
+    "INC-1010": {
+        "incident_id": "INC-1010",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T06:38:42.794482+00:00",
+        "status": "TICKET_CREATED"
+    },
+    "INC-1011": {
+        "incident_id": "INC-1011",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T11:22:05.291206+00:00",
+        "status": "TICKET_CREATED"
+    },
+    "INC-1012": {
+        "incident_id": "INC-1012",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-09-30T12:01:18.521789+00:00",
+        "status": "TICKET_CREATED"
+    },
+    "INC-1013": {
+        "incident_id": "INC-1013",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-10-01T05:31:32.466002+00:00",
+        "status": "TICKET_CREATED"
+    },
+    "INC-1014": {
+        "incident_id": "INC-1014",
+        "source": "POC Detection Engine",
+        "severity": "MEDIUM",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-10-01T05:46:56.587323+00:00",
+        "status": "CORRELATING"
+    },
+    "INC-1015": {
+        "incident_id": "INC-1015",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-10-01T05:51:21.142697+00:00",
+        "status": "TICKET_CREATED"
     }
 }

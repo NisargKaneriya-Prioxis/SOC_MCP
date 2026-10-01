@@ -1,5 +1,7 @@
 venv/
 .env
+.env.mock.example
+.env.windows.example
 __pycache__/
 *.pyc
 .pytest_cache/

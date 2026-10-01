@@ -3,3 +3,7 @@ openai
 python-dotenv
 pydantic
 pytest
+fastapi
+uvicorn[standard]
+websockets
+pywin32

@@ -7,7 +7,7 @@ from app.agent.mcp_client import SOCMCPClient
 
 from app.monitoring.incident_manager import IncidentManager
 from app.audit.audit_logger import log_audit_event
-
+from app.api.event_publisher import publish_event
 
 async def investigation_worker(
     worker_name: str,
@@ -57,7 +57,16 @@ async def investigation_worker(
                 incident_id,
                 "INVESTIGATING"
             )
-
+            
+            await publish_event(
+                "INVESTIGATION_STARTED",
+                {
+                    "incident_id": incident_id,
+                    "status": "INVESTIGATING",
+                    "worker": worker_name
+                }
+            )
+            
             log_audit_event(
                 event_type="INVESTIGATION_STARTED",
                 incident_id=incident_id,
@@ -154,9 +163,24 @@ async def investigation_worker(
                 network=network
             )
 
+            incident = incident_manager.load_incident(incident_id)
+            
             print("\nRisk assessment completed.")
             print(f"Risk Score: {risk['score']}")
             print(f"Risk Level: {risk['level']}")
+            
+            await publish_event(
+                "RISK_ASSESSED",
+                {
+                    "incident_id": incident_id,
+                    "score": risk["score"],
+                    "level": risk["level"],
+                    "reasons": risk.get(
+                        "reasons",
+                        []
+                    )
+                }
+            )
 
             # =================================================
             # 6. Store investigation and risk
@@ -192,6 +216,16 @@ async def investigation_worker(
             incident_manager.update_status(
                 incident_id,
                 "INVESTIGATED"
+            )
+            
+            await publish_event(
+                "INVESTIGATION_COMPLETED",
+                {
+                    "incident_id": incident_id,
+                    "status": "INVESTIGATED",
+                    "severity": risk["level"],
+                    "risk_score": risk["score"]
+                }
             )
 
             log_audit_event(
@@ -263,7 +297,15 @@ async def investigation_worker(
                 incident_id,
                 "CREATING_TICKET"
             )
-
+            
+            await publish_event(
+                "TICKET_CREATION_STARTED",
+                {
+                    "incident_id": incident_id,
+                    "status": "CREATING_TICKET",
+                    "severity": risk["level"]
+                }
+            )
             # =================================================
             # 9. Create ticket through MCP
             # =================================================
@@ -357,7 +399,21 @@ async def investigation_worker(
                 incident_id,
                 "TICKET_CREATED"
             )
-
+            
+            await publish_event(
+                "TICKET_CREATED",
+                {
+                    "incident_id": incident_id,
+                    "status": "TICKET_CREATED",
+                    "ticket_id": ticket_id,
+                    "ticket_status": ticket.get(
+                        "status",
+                        "OPEN"
+                    ),
+                    "severity": risk["level"],
+                    "risk_score": risk["score"]
+                }
+            )
             # =================================================
             # 12. Audit successful ticket creation
             # =================================================
@@ -446,7 +502,17 @@ async def investigation_worker(
                     incident_id,
                     failure_status
                 )
-
+                
+                await publish_event(
+                    failure_event,
+                    {
+                        "incident_id": incident_id,
+                        "status": failure_status,
+                        "stage": current_stage,
+                        "error": str(exc)
+                    }
+                )
+                
                 log_audit_event(
                     event_type=failure_event,
                     incident_id=incident_id,

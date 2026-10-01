@@ -1,6 +1,12 @@
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from app.providers.identity.factory import (
+    get_login_history as provider_get_login_history
+)
+from app.providers.endpoint.factory import (
+get_endpoint_activity as provider_get_endpoint_activity
+)
 
 from fastmcp import FastMCP
 
@@ -80,52 +86,18 @@ def get_login_history(
     user: str
 ) -> dict:
     """
-    Retrieve authentication activity for a user.
+    Retrieve authentication information for a user.
 
-    Simulates identity information coming from Okta.
+    The provider is selected using IDENTITY_SOURCE.
 
-    Args:
-        user: Username associated with the incident.
-
-    Returns:
-        Authentication and identity evidence.
+    Supported:
+    - mock
+    - windows
     """
 
-    logins = load_json(
-        "logins.json"
-    )
-
-    login = logins.get(
+    return provider_get_login_history(
         user
     )
-
-    if not login:
-        return {
-            "success": False,
-            "error": (
-                f"Login information for "
-                f"{user} was not found."
-            )
-        }
-
-    suspicious_location = (
-        login.get("country")
-        != login.get("usual_country")
-    )
-
-    result = dict(
-        login
-    )
-
-    result[
-        "suspicious_location"
-    ] = suspicious_location
-
-    return {
-        "success": True,
-        "data": result
-    }
-
 
 # =========================================================
 # TOOL 3
@@ -138,38 +110,20 @@ def get_endpoint_activity(
     device: str
 ) -> dict:
     """
-    Retrieve endpoint security activity for a device.
+    Retrieve endpoint security information.
 
-    Simulates CrowdStrike endpoint telemetry.
+    The underlying provider is selected using
+    ENDPOINT_SOURCE.
 
-    Args:
-        device: Device hostname such as LAPTOP-01.
+    Supported providers:
 
-    Returns:
-        Endpoint security evidence.
+    - mock
+    - windows
     """
 
-    endpoints = load_json(
-        "endpoints.json"
-    )
-
-    endpoint = endpoints.get(
+    return provider_get_endpoint_activity(
         device
     )
-
-    if not endpoint:
-        return {
-            "success": False,
-            "error": (
-                f"Endpoint {device} "
-                "was not found."
-            )
-        }
-
-    return {
-        "success": True,
-        "data": endpoint
-    }
 
 
 # =========================================================

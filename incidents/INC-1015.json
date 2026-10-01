@@ -1,0 +1,241 @@
+{
+    "incident_id": "INC-1015",
+    "alert": "Multiple Failed Login Attempts",
+    "severity": "HIGH",
+    "status": "TICKET_CREATED",
+    "user": "john.doe",
+    "device": "LAPTOP-01",
+    "events": [
+        {
+            "event_id": "EVT-003",
+            "event_type": "login_failed",
+            "user": "john.doe",
+            "device": "LAPTOP-01",
+            "failed_attempts": 15,
+            "country": "Russia",
+            "timestamp": "2026-09-29T10:02:00Z"
+        },
+        {
+            "event_id": "EVT-004",
+            "event_type": "process_execution",
+            "user": "john.doe",
+            "device": "LAPTOP-01",
+            "process": "powershell.exe",
+            "status": "suspicious",
+            "timestamp": "2026-09-29T10:03:00Z"
+        },
+        {
+            "event_id": "EVT-005",
+            "event_type": "network_connection",
+            "user": "john.doe",
+            "device": "LAPTOP-01",
+            "destination_ip": "185.22.11.90",
+            "reputation": "malicious",
+            "timestamp": "2026-09-29T10:04:00Z"
+        }
+    ],
+    "detections": [
+        {
+            "rule_id": "DET-001",
+            "alert_name": "Multiple Failed Login Attempts",
+            "severity": "MEDIUM",
+            "reason": "15 failed authentication attempts detected.",
+            "event_id": "EVT-003",
+            "timestamp": "2026-09-29T10:02:00Z"
+        },
+        {
+            "rule_id": "DET-002",
+            "alert_name": "Suspicious PowerShell Execution",
+            "severity": "HIGH",
+            "reason": "Suspicious PowerShell execution was detected.",
+            "event_id": "EVT-004",
+            "timestamp": "2026-09-29T10:03:00Z"
+        },
+        {
+            "rule_id": "DET-003",
+            "alert_name": "Malicious Network Communication",
+            "severity": "HIGH",
+            "reason": "Endpoint communicated with a known malicious destination.",
+            "event_id": "EVT-005",
+            "timestamp": "2026-09-29T10:04:00Z"
+        }
+    ],
+    "created_at": "2026-10-01T05:51:21.142697+00:00",
+    "updated_at": "2026-10-01T05:51:49.376695+00:00",
+    "risk_assessment": {
+        "score": 9,
+        "level": "HIGH",
+        "reasons": [
+            "High number of failed login attempts",
+            "Login detected from an unusual location",
+            "MFA was not used",
+            "Suspicious endpoint process execution detected",
+            "Endpoint security detected possible malware",
+            "Communication with malicious destination detected"
+        ]
+    },
+    "investigation_result": {
+        "report": "### 1. INCIDENT SUMMARY\n\n- **Incident ID**: INC-1015\n- **Alert or Detection Name**: Multiple Failed Login Attempts\n- **User**: john.doe\n- **Device**: LAPTOP-01\n- **Current Recorded Severity**: HIGH\n- **Current Incident Status**: INVESTIGATING\n\n---\n\n### 2. OBSERVED EVIDENCE\n\n#### Authentication Evidence:\n- **Failed Authentication Attempts**: 15 failures.\n- **Successful Authentication**: Confirmed following the failed attempts.\n- **Source IP**: 91.200.12.15.\n- **Country/Location**: Russia (suspicious location compared to expected location, India).\n- **Usual Country**: India.\n- **MFA Status**: Not enabled.\n\n#### Windows Security Evidence:\n- **Event ID**: EVT-003 - Multiple failed login attempts (timestamp: 2026-09-29T10:02:00Z).\n- **Event ID**: EVT-004 - Suspicious PowerShell execution (timestamp: 2026-09-29T10:03:00Z).\n- **Event ID**: EVT-005 - Malicious network communication (timestamp: 2026-09-29T10:04:00Z).\n\n#### Endpoint Evidence:\n- **Process Execution**: \"powershell.exe\" executed on LAPTOP-01 (timestamp: 2026-09-29T10:28:00Z).\n- **Parent Process**: \"winword.exe\".\n- **Command**: Suspicious encoded PowerShell command detected.\n- **Malware Status**: Malware detected.\n\n#### Network Evidence:\n- **Source IP**: 10.0.0.25.\n- **Destination IP**: 185.22.11.90.\n- **Destination Port**: 443 (protocol: HTTPS).\n- **Action Taken**: Allowed.\n- **Reputation**: Destination confirmed as malicious.\n\n#### Security Log Evidence:\n- 2026-09-29T10:20:00Z: Authentication failure for user john.doe at device LAPTOP-01.\n- 2026-09-29T10:21:00Z: Multiple authentication failures detected.\n- 2026-09-29T10:25:00Z: Successful authentication from suspicious location (Russia).\n- 2026-09-29T10:28:00Z: Suspicious PowerShell execution detected.\n- 2026-09-29T10:29:00Z: Connection to malicious destination detected.\n\n---\n\n### 3. INVESTIGATION TIMELINE\n\n1. **2026-09-29T10:02:00Z**: 15 failed authentication attempts detected for user **john.doe** on device **LAPTOP-01**.\n2. **2026-09-29T10:25:00Z**: Successful login occurred from an unusual location (Russia) with IP: **91.200.12.15**. MFA was not enabled.\n3. **2026-09-29T10:28:00Z**: Suspicious PowerShell executed, triggered by parent process **winword.exe**. Encoded commands detected and malware confirmed.\n4. **2026-09-29T10:29:00Z**: Device **LAPTOP-01** established a connection to a known malicious IP (**185.22.11.90**) via HTTPS (port 443).\n\n---\n\n### 4. ASSESSMENT\n\nThe collective evidence suggests that the user account **john.doe** may have experienced a compromise starting with unauthorized login attempts. The successful authentication from an unusual location (Russia) combined with the absence of MFA adds substantial risk. Post-compromise activity included suspicious PowerShell execution and communication with a malicious IP, indicating potential malware installation and external communication.\n\nHowever, the observed evidence does not confirm how credentials were obtained or the attacker's intent. Further analysis is required to determine whether lateral movement, data exfiltration, or command channels exist.\n\n---\n\n### 5. CURRENT RECORDED SEVERITY\n\n- Determined by the detection engine: **HIGH**\n\n---\n\n### 6. RECOMMENDED ACTIONS\n\n1. **Account Review**: Investigate the user account **john.doe** for additional signs of compromise. Verify the legitimacy of the successful authentication and determine whether the account credentials were stolen.\n2. **Enable MFA**: Ensure multifactor authentication is enabled for the account to prevent unauthorized logins.\n3. **Endpoint Isolation**: Isolate the device **LAPTOP-01** to prevent further damage and external communication.\n4. **Malware Analysis**: Analyze the PowerShell command and detected malware for further insights into the attack and indicators of compromise.\n5. **Block Malicious IP**: Immediately block communications with **185.22.11.90** across the network devices.\n6. **Threat Hunting**: Investigate organization-wide logs for signs of lateral movement or possible persistence mechanisms.\n7. **Review Logs**: Perform additional log correlation to validate the timeline and uncover any additional events.\n\n---\n\n### 7. EVIDENCE GAPS\n\n- The origin of the account compromise (e.g., phishing, brute-force attack) remains uncertain.\n- Specific details about the malware detected on LAPTOP-01 are unavailable.\n- Limited endpoint telemetry for broader device activity analysis.\n- No confirmed exfiltration evidence despite communication with a malicious IP.\n\n--- \n\nThis report is ready for action.",
+        "evidence": {
+            "get_alert_details": {
+                "success": true,
+                "data": {
+                    "incident_id": "INC-1015",
+                    "source": "POC Detection Engine",
+                    "severity": "HIGH",
+                    "alert": "Multiple Failed Login Attempts",
+                    "user": "john.doe",
+                    "device": "LAPTOP-01",
+                    "timestamp": "2026-10-01T05:51:21.142697+00:00",
+                    "status": "INVESTIGATING"
+                }
+            },
+            "get_incident_evidence": {
+                "success": true,
+                "incident_id": "INC-1015",
+                "status": "INVESTIGATING",
+                "severity": "HIGH",
+                "user": "john.doe",
+                "device": "LAPTOP-01",
+                "detections": [
+                    {
+                        "rule_id": "DET-001",
+                        "alert_name": "Multiple Failed Login Attempts",
+                        "severity": "MEDIUM",
+                        "reason": "15 failed authentication attempts detected.",
+                        "event_id": "EVT-003",
+                        "timestamp": "2026-09-29T10:02:00Z"
+                    },
+                    {
+                        "rule_id": "DET-002",
+                        "alert_name": "Suspicious PowerShell Execution",
+                        "severity": "HIGH",
+                        "reason": "Suspicious PowerShell execution was detected.",
+                        "event_id": "EVT-004",
+                        "timestamp": "2026-09-29T10:03:00Z"
+                    },
+                    {
+                        "rule_id": "DET-003",
+                        "alert_name": "Malicious Network Communication",
+                        "severity": "HIGH",
+                        "reason": "Endpoint communicated with a known malicious destination.",
+                        "event_id": "EVT-005",
+                        "timestamp": "2026-09-29T10:04:00Z"
+                    }
+                ],
+                "events": [
+                    {
+                        "event_id": "EVT-003",
+                        "event_type": "login_failed",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01",
+                        "failed_attempts": 15,
+                        "country": "Russia",
+                        "timestamp": "2026-09-29T10:02:00Z"
+                    },
+                    {
+                        "event_id": "EVT-004",
+                        "event_type": "process_execution",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01",
+                        "process": "powershell.exe",
+                        "status": "suspicious",
+                        "timestamp": "2026-09-29T10:03:00Z"
+                    },
+                    {
+                        "event_id": "EVT-005",
+                        "event_type": "network_connection",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01",
+                        "destination_ip": "185.22.11.90",
+                        "reputation": "malicious",
+                        "timestamp": "2026-09-29T10:04:00Z"
+                    }
+                ]
+            },
+            "get_login_history": {
+                "success": true,
+                "source": "Mock Identity Provider",
+                "data": {
+                    "user": "john.doe",
+                    "failed_logins": 15,
+                    "successful_login": true,
+                    "country": "Russia",
+                    "usual_country": "India",
+                    "mfa": false,
+                    "source_ip": "91.200.12.15",
+                    "timestamp": "2026-09-29T10:25:00Z",
+                    "suspicious_location": true
+                }
+            },
+            "get_endpoint_activity": {
+                "success": true,
+                "source": "Mock Endpoint Provider",
+                "data": {
+                    "device": "LAPTOP-01",
+                    "hostname": "LAPTOP-01",
+                    "process": "powershell.exe",
+                    "parent_process": "winword.exe",
+                    "command": "Suspicious encoded PowerShell command detected",
+                    "status": "suspicious",
+                    "malware_detected": true,
+                    "timestamp": "2026-09-29T10:28:00Z"
+                }
+            },
+            "get_network_activity": {
+                "success": true,
+                "data": {
+                    "device": "LAPTOP-01",
+                    "source_ip": "10.0.0.25",
+                    "destination_ip": "185.22.11.90",
+                    "destination_port": 443,
+                    "protocol": "HTTPS",
+                    "reputation": "malicious",
+                    "action": "allowed",
+                    "timestamp": "2026-09-29T10:29:00Z"
+                }
+            },
+            "search_security_logs": {
+                "success": true,
+                "count": 5,
+                "data": [
+                    {
+                        "timestamp": "2026-09-29T10:20:00Z",
+                        "event": "Authentication failure",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01"
+                    },
+                    {
+                        "timestamp": "2026-09-29T10:21:00Z",
+                        "event": "Multiple authentication failures detected",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01"
+                    },
+                    {
+                        "timestamp": "2026-09-29T10:25:00Z",
+                        "event": "Successful authentication from unusual location",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01"
+                    },
+                    {
+                        "timestamp": "2026-09-29T10:28:00Z",
+                        "event": "Suspicious PowerShell execution detected",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01"
+                    },
+                    {
+                        "timestamp": "2026-09-29T10:29:00Z",
+                        "event": "Connection to malicious destination detected",
+                        "user": "john.doe",
+                        "device": "LAPTOP-01"
+                    }
+                ]
+            }
+        }
+    },
+    "ticket": {
+        "ticket_id": "SOC-1008",
+        "status": "OPEN",
+        "created_at": "2026-10-01T05:51:49.356100+00:00"
+    }
+}

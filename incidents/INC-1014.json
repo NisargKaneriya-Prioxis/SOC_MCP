@@ -1,0 +1,31 @@
+{
+    "incident_id": "INC-1014",
+    "alert": "Multiple Failed Login Attempts",
+    "severity": "MEDIUM",
+    "status": "CORRELATING",
+    "user": "john.doe",
+    "device": "LAPTOP-01",
+    "events": [
+        {
+            "event_id": "EVT-003",
+            "event_type": "login_failed",
+            "user": "john.doe",
+            "device": "LAPTOP-01",
+            "failed_attempts": 15,
+            "country": "Russia",
+            "timestamp": "2026-09-29T10:02:00Z"
+        }
+    ],
+    "detections": [
+        {
+            "rule_id": "DET-001",
+            "alert_name": "Multiple Failed Login Attempts",
+            "severity": "MEDIUM",
+            "reason": "15 failed authentication attempts detected.",
+            "event_id": "EVT-003",
+            "timestamp": "2026-09-29T10:02:00Z"
+        }
+    ],
+    "created_at": "2026-10-01T05:46:56.587323+00:00",
+    "updated_at": "2026-10-01T05:46:56.587323+00:00"
+}
