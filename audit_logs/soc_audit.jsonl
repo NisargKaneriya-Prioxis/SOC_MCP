@@ -30,3 +30,7 @@
 {"timestamp": "2026-10-01T05:51:49.319500+00:00", "event_type": "INVESTIGATION_COMPLETED", "incident_id": "INC-1015", "details": {"worker": "Worker-1", "risk_score": 9, "risk_level": "HIGH"}}
 {"timestamp": "2026-10-01T05:51:49.322456+00:00", "event_type": "TICKET_CREATION_REQUESTED", "incident_id": "INC-1015", "details": {"severity": "HIGH", "worker": "Worker-1"}}
 {"timestamp": "2026-10-01T05:51:49.382183+00:00", "event_type": "TICKET_CREATED", "incident_id": "INC-1015", "details": {"ticket_id": "SOC-1008", "severity": "HIGH", "worker": "Worker-1"}}
+{"timestamp": "2026-10-01T10:30:24.561176+00:00", "event_type": "INVESTIGATION_STARTED", "incident_id": "INC-1016", "details": {"worker": "Worker-1"}}
+{"timestamp": "2026-10-01T10:30:41.622896+00:00", "event_type": "INVESTIGATION_COMPLETED", "incident_id": "INC-1016", "details": {"worker": "Worker-1", "risk_score": 9, "risk_level": "HIGH"}}
+{"timestamp": "2026-10-01T10:30:41.638990+00:00", "event_type": "TICKET_CREATION_REQUESTED", "incident_id": "INC-1016", "details": {"severity": "HIGH", "worker": "Worker-1"}}
+{"timestamp": "2026-10-01T10:30:41.703235+00:00", "event_type": "TICKET_CREATED", "incident_id": "INC-1016", "details": {"ticket_id": "SOC-1009", "severity": "HIGH", "worker": "Worker-1"}}

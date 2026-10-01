@@ -148,5 +148,15 @@
         "device": "LAPTOP-01",
         "timestamp": "2026-10-01T05:51:21.142697+00:00",
         "status": "TICKET_CREATED"
+    },
+    "INC-1016": {
+        "incident_id": "INC-1016",
+        "source": "POC Detection Engine",
+        "severity": "HIGH",
+        "alert": "Multiple Failed Login Attempts",
+        "user": "john.doe",
+        "device": "LAPTOP-01",
+        "timestamp": "2026-10-01T10:30:14.504300+00:00",
+        "status": "TICKET_CREATED"
     }
 }
